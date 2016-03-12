@@ -13,8 +13,8 @@ public class CD implements Product {
     GregorianCalendar releasedDate;
     public CD(double price, String name, String artist ,int yearOfReleased,int MothOfReleased,int DayOfReleased) {
         this.price = price;
-        this.name = title;
-        this.title = title;
+        this.name = name;
+        this.title = name;
         this.artist = artist;
         this.releasedDate = new GregorianCalendar(yearOfReleased, MothOfReleased, DayOfReleased);
     }
