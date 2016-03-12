@@ -1,8 +1,16 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * Created by Maja on 06.03.2016.
  */
+
+
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Book ksiazka = new Book(12.99, "Hobbit", "J. R. R. Tolkien");
         CD plyta = new CD(39.99, "Podróż zwana życiem", "O.S.T.R.", 2016, 2, 3);
         System.out.println(plyta.getReleasedDate());
@@ -26,3 +34,4 @@ public class Main {
         koszyk.getListOfProducts();
     }
 }
+

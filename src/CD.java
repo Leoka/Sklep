@@ -9,9 +9,8 @@ public class CD implements Product {
     private String name;
     private String title;
     private String artist;
-    //TODO: Repair Released date
     GregorianCalendar releasedDate;
-    public CD(double price, String name, String artist ,int yearOfReleased,int MothOfReleased,int DayOfReleased) {
+    public CD(double price, String name, String artist ,int yearOfReleased, int MothOfReleased, int DayOfReleased) {
         this.price = price;
         this.name = name;
         this.title = name;
