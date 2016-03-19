@@ -1,10 +1,9 @@
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
  * Created by Maja on 06.03.2016.
  */
-public class CD implements Product {
+public class CD extends Product {
     private double price;
     private String name;
     private String title;

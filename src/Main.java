@@ -1,37 +1,41 @@
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
+import java.sql.*;
+import java.lang.*;
 
 /**
  * Created by Maja on 06.03.2016.
  */
 
-
-
 public class Main {
-    public static void main(String[] args) throws ParseException {
-        Book ksiazka = new Book(12.99, "Hobbit", "J. R. R. Tolkien");
-        CD plyta = new CD(39.99, "Podróż zwana życiem", "O.S.T.R.", 2016, 2, 3);
-        System.out.println(plyta.getReleasedDate());
-        System.out.println(ksiazka.getName());
-        System.out.println(ksiazka.getPrice());
-        ksiazka.getFullDescription();
-        plyta.getFullDescription();
-        ShoppingCart koszyk = new ShoppingCart();
 
-        koszyk.addingProduct(ksiazka);
-        koszyk.addingProduct(plyta);
-        koszyk.getListOfProducts();
-        System.out.println(koszyk.getSum());
-        koszyk.addingProduct(plyta);
-        koszyk.getListOfProducts();
-        System.out.println(koszyk.getSum());
-        koszyk.removingProduct(plyta);
-        koszyk.getListOfProducts();
-        System.out.println(koszyk.getSum());
-        koszyk.removingProduct(ksiazka);
-        koszyk.getListOfProducts();
+    // JDBC driver name and database URL
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost/SHOP";
+
+    //  Database credentials
+    static final String USER = "root";
+    static final String PASS = "adoy";
+
+    public static void main(String[] args) throws ParseException {
+        Connection conn = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Book ksiazka1 = new Book("Nieznajomy","Harlan Coben","Wydawnictwo Albatros","Sensacja",29.49,100,conn);
+        Book ksiazka2 = new Book("Unik", "Chelsea Cain", "Czwarta Strona", "Kryminał", 30.32, 50, conn);
+        System.out.println(ksiazka1.toString());
+        System.out.println(ksiazka2.toString());
+        try {
+            if (conn != null)
+                conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
