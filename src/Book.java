@@ -11,16 +11,15 @@ public class Book extends Product {
     String author;
     String title;
     String publisher;
-    String category;
     int amount;
-
-
+    String category;
 
     public Book(String title, String author, String publisher, String category, double price, int amount, Connection conn) {
         ResultSet rs = null;
         String sql = null;
         PreparedStatement ps = null;
-        String queryCheck = "SELECT * from books where id=" + id;
+        int count = 0;
+        String queryCheck = "SELECT COUNT(*) from books where id=" + nextId;
         try {
             ps = conn.prepareStatement(queryCheck);
         } catch (SQLException e) {
@@ -37,13 +36,21 @@ public class Book extends Product {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(rs);
-        if (rs != null) {
+        try {
+            rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            count = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (count == 0) {
             this.id = nextId;
             nextId += 1;
             System.out.println("Adding book to database...");
             sql = "INSERT INTO books VALUES(" + id + "," + price + ",'" + author + "','" + title + "','" + publisher + "','" + category + "'," + amount + ");";
-            System.out.println(sql);
             try {
                 stmt.executeUpdate(sql);
                 System.out.println("Book added.");
@@ -61,16 +68,43 @@ public class Book extends Product {
             this.category = category;
             this.amount = amount;
         }
-        else {
+        else if(count ==1){
+
+            // TODO Wrong ID when updating amount.
+            this.price = price;
+            this.name = title;
+            this.author = author;
+            this.title = title;
+            this.publisher = publisher;
+            this.category = category;
+            this.amount = amount;
+
             System.out.println("Record is already existing. Changing amount...");
-            this.amount = this.amount + amount;
-            sql = "UPDATE books SET amount = " + this.amount + "WHERE id=" + id;
+            sql = "SELECT amount from books WHERE id=" + nextId + ";";
+            int previousAmount = 0;
             try {
-                stmt.executeQuery(sql);
+                rs = stmt.executeQuery(sql);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            System.out.println("Amount changed. amount = " + amount);
+            try {
+                rs.next();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                previousAmount = rs.getInt(1);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            amount = previousAmount + amount;
+            sql = "UPDATE books SET amount = " + amount + " WHERE id=" + nextId + ";";
+            try {
+                stmt.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Amount changed. Amount is now = " + amount);
 
         }
     }
