@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -8,13 +10,15 @@ public class CD extends Product {
     private String name;
     private String title;
     private String artist;
-    GregorianCalendar releasedDate;
-    public CD(double price, String name, String artist ,int yearOfReleased, int MothOfReleased, int DayOfReleased) {
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private GregorianCalendar releasedDate;
+    public CD(double price, String name, String artist, int yearOfReleased, int MothOfReleased, int DayOfReleased) {
         this.price = price;
         this.name = name;
         this.title = name;
         this.artist = artist;
-        this.releasedDate = new GregorianCalendar(yearOfReleased, MothOfReleased, DayOfReleased);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        this.releasedDate = new GregorianCalendar(DayOfReleased, MothOfReleased, yearOfReleased);
     }
 
     @Override
@@ -40,7 +44,7 @@ public class CD extends Product {
     }
     public void getFullDescription() {
         System.out.println("---------------------------------------------------------------------------");
-        System.out.println("price: " +  price + '\n' + "artist: " + artist + '\n' + "title: " + title + "Released date: " + releasedDate);
+        System.out.println("price: " +  price + '\n' + "artist: " + artist + '\n' + "title: " + title + "Released date: " + sdf.format(releasedDate.getTime());
         System.out.println("---------------------------------------------------------------------------");
     }
 }
