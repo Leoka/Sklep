@@ -1,1 +1,2 @@
 TODO:
+- dodać ID do productu, łatwiejsza identyfikacja przedmiotów w zamówieniu.
