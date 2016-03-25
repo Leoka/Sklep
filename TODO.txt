@@ -1,2 +1,3 @@
 TODO:
 - dodać ID do productu, łatwiejsza identyfikacja przedmiotów w zamówieniu.
+- stworzyć klasę SIGNLETON dla Admina

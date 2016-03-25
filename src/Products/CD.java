@@ -1,5 +1,6 @@
+package Products;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -44,7 +45,7 @@ public class CD extends Product {
     }
     public void getFullDescription() {
         System.out.println("---------------------------------------------------------------------------");
-        System.out.println("price: " +  price + '\n' + "artist: " + artist + '\n' + "title: " + title + "Released date: " + sdf.format(releasedDate.getTime());
+        System.out.println("price: " +  price + '\n' + "artist: " + artist + '\n' + "title: " + title + "Released date: " + sdf.format(releasedDate.getTime()));
         System.out.println("---------------------------------------------------------------------------");
     }
 }

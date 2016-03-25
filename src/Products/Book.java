@@ -1,3 +1,5 @@
+package Products;
+
 import java.sql.*;
 
 /**
@@ -19,7 +21,8 @@ public class Book extends Product {
         String sql = null;
         PreparedStatement ps = null;
         int count = 0;
-        String queryCheck = "SELECT COUNT(*) from books where id=" + nextId;
+        // TODO sprawdzanie ksiażek nie po id a po tytule np.
+        String queryCheck = "SELECT COUNT(*) from books where title= '" + title + "';";
         try {
             ps = conn.prepareStatement(queryCheck);
         } catch (SQLException e) {
@@ -53,7 +56,7 @@ public class Book extends Product {
             sql = "INSERT INTO books VALUES(" + id + "," + price + ",'" + author + "','" + title + "','" + publisher + "','" + category + "'," + amount + ");";
             try {
                 stmt.executeUpdate(sql);
-                System.out.println("Book added.");
+                System.out.println("Products.Book added.");
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -70,7 +73,7 @@ public class Book extends Product {
         }
         else if(count ==1){
 
-            // TODO Wrong ID when updating amount.
+            // TODO Wrong ID when updating amount. Trzeba sprawdzić jakie ma id w bazie danych.
             this.price = price;
             this.name = title;
             this.author = author;
@@ -121,7 +124,7 @@ public class Book extends Product {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Products.Book{" +
                 "id=" + id +
                 ", price=" + price +
                 ", name='" + name + '\'' +

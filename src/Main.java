@@ -1,3 +1,6 @@
+import Products.Book;
+import User.NormalUser;
+
 import java.text.ParseException;
 import java.sql.*;
 import java.lang.*;
@@ -35,6 +38,12 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        NormalUser uzytkownik1 = new NormalUser("login", "pass");
+        System.out.println(uzytkownik1.login("log", "pass"));
+        System.out.println(uzytkownik1.login("login","pass"));
+        uzytkownik1.addToBasket(ksiazka1);
+        uzytkownik1.addToBasket(ksiazka2);
+
     }
 }
 
