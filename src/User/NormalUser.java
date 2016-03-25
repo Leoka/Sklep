@@ -4,6 +4,7 @@ import Orders.Order;
 import Orders.orderStatus;
 import Products.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class NormalUser extends User {
 
     static int nextId = 1;
     int userID;
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
     boolean isLogin = false;
 
     public NormalUser(String login, String password) {
@@ -21,8 +22,7 @@ public class NormalUser extends User {
         nextId++;
         this.login = login;
         this.password = password;
-        Order order = new Order();
-        this.orders.add(order);
+        this.orders.add(new Order());
 
     }
 
@@ -40,12 +40,14 @@ public class NormalUser extends User {
 
     public void addToBasket(Product p) {
         if (this.isLogin == true) {
-            int i = orders.lastIndexOf(orders);
+            int i = orders.size() - 1;
             if (orders.get(i).getStatus() != orderStatus.PENDING) {
                 orders.add(new Order());
                 orders.get(i).addToBasket(p);
+                System.out.println("You have added " + p.getName() + " to your cart.");
             } else {
                 orders.get(i).addToBasket(p);
+                System.out.println("You have added " + p.getName() + " to your cart.");
             }
         }
         else
