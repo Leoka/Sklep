@@ -1,7 +1,6 @@
 package User;
 
 import Orders.Order;
-import Orders.User;
 import Orders.orderStatus;
 import Products.Product;
 
