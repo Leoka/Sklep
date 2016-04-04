@@ -15,7 +15,7 @@ public class NormalUser extends User {
     static int nextId = 1;
     int userID;
     private List<Order> orders = new ArrayList<>();
-    boolean isLogin = false;
+    private boolean isLogin = false;
 
     public NormalUser(String login, String password) {
         this.userID = nextId;
@@ -36,6 +36,10 @@ public class NormalUser extends User {
             System.out.println("Unsuccessful login. Wrong login or password.");
             return false;
         }
+    }
+
+    public boolean isLogin() {
+        return isLogin;
     }
 
     public void addToBasket(Product p) {
