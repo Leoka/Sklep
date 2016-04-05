@@ -18,7 +18,6 @@ public class CD extends Product {
         this.name = name;
         this.title = name;
         this.artist = artist;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         this.releasedDate = new GregorianCalendar(DayOfReleased, MothOfReleased, yearOfReleased);
     }
 
