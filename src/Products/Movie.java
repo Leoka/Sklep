@@ -13,8 +13,9 @@ public class Movie extends Product {
     private GregorianCalendar releasedDate;
     private Format format;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private int amount;
 
-    public Movie(double price, String title, Format format, int dayOfReleased, int mothOfReleased, int yearOfReleased) {
+    public Movie(double price, String title, Format format, int dayOfReleased, int mothOfReleased, int yearOfReleased, int amount) {
         this.id = nextId;
         nextId++;
         this.price = price;
@@ -22,6 +23,7 @@ public class Movie extends Product {
         this.title = title;
         this.format = format;
         this.releasedDate = new GregorianCalendar(yearOfReleased, mothOfReleased-1, dayOfReleased);
+        this.amount = amount;
     }
 
     @Override
@@ -39,5 +41,6 @@ public class Movie extends Product {
         System.out.println("Price: \t\t\t" + this.price);
         System.out.println("Released date: \t" + sdf.format(releasedDate.getTime()));
         System.out.println("Format: \t\t" + format.toString());
+        System.out.println("----------------------------------------------------------------");
     }
 }
