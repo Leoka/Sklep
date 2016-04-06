@@ -16,7 +16,7 @@ public class Book extends Product {
     int amount;
     String category;
 
-    public Book(String title, String author, String publisher, String category, double price, int amount, Connection conn) {
+    public Book(String title, String author, double price, String publisher, String category, int amount, Connection conn) {
         ResultSet rs = null;
         String sql = null;
         PreparedStatement ps = null;
@@ -122,17 +122,12 @@ public class Book extends Product {
         return this.price;
     }
 
-    @Override
-    public String toString() {
-        return "Products.Book{" +
-                "id=" + id +
-                ", price=" + price +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", category='" + category + '\'' +
-                ", amount=" + amount +
-                '}';
+    public void getFullDescription() {
+        System.out.println("Title: \t\t\t" + this.title);
+        System.out.println("Author: \t\t" + this.author);
+        System.out.println("Price: \t\t\t" + this.price);
+        System.out.println("Category: \t\t" + this.category);
+        System.out.println("Publisher: \t\t" + this.publisher);
+        System.out.println("----------------------------------------------------------------");
     }
 }
