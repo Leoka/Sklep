@@ -13,12 +13,18 @@ public class CD extends Product {
     private String artist;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private GregorianCalendar releasedDate;
-    public CD(double price, String name, String artist, int yearOfReleased, int MothOfReleased, int DayOfReleased) {
+    private int amount;
+    
+    public CD(String title, String artist, double price, String category, int yearOfReleased, int mothOfReleased, int dayOfReleased, int amount) {
+        this.id = nextId;
+        nextId++;
         this.price = price;
-        this.name = name;
-        this.title = name;
+        this.name = title;
+        this.title = title;
         this.artist = artist;
-        this.releasedDate = new GregorianCalendar(DayOfReleased, MothOfReleased, yearOfReleased);
+        this.category = category;
+        this.releasedDate = new GregorianCalendar(yearOfReleased, mothOfReleased-1, dayOfReleased );
+        this.amount = amount;
     }
 
     @Override
@@ -42,9 +48,14 @@ public class CD extends Product {
     public GregorianCalendar getReleasedDate() {
         return releasedDate;
     }
+    
     public void getFullDescription() {
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("price: " +  price + '\n' + "artist: " + artist + '\n' + "title: " + title + "Released date: " + sdf.format(releasedDate.getTime()));
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("Title: \t\t\t" + this.title);
+        System.out.println("Artist: \t\t" + this.artist);
+        System.out.println("Price: \t\t\t" + this.price);
+        System.out.println("Category: \t\t" + this.category);
+        System.out.println("Released date: \t" + sdf.format(releasedDate.getTime()));
+        System.out.println("----------------------------------------------------------------");
     }
+}
 }
