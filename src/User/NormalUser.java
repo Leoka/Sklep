@@ -13,6 +13,7 @@ import java.util.List;
 public class NormalUser extends User {
 
     static int nextId = 1;
+    static final boolean isAdmin = false;
     int userID;
     private List<Order> orders = new ArrayList<>();
     private boolean isLogin = false;
@@ -23,23 +24,10 @@ public class NormalUser extends User {
         this.login = login;
         this.password = password;
         this.orders.add(new Order());
-
     }
-
-    public boolean login(String login, String password) {
-        if ((login.equals(this.login)) && (password.equals(this.password))){
-            this.isLogin = true;
-            System.out.println("Successful login for user: " + login);
-            return true;
-        } else {
-            this.isLogin = false;
-            System.out.println("Unsuccessful login. Wrong login or password.");
-            return false;
-        }
-    }
-
-    public boolean isLogin() {
-        return isLogin;
+    
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
     public void addToBasket(Product p) {
