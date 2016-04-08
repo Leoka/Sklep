@@ -1,11 +1,11 @@
-import User.NormalUser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Created by Maja on 04.04.2016.
+ * Created by emajgra on 4/7/2016.
  */
-public class UserTest {
+public class UsersTest {
+
     @Test()
     public void userLoginTest() {
         System.out.println("Normal user login:");
@@ -31,5 +31,38 @@ public class UserTest {
         Assert.assertTrue(user.changingPassword("pass","pass2"));
         Assert.assertTrue(user.login("user","pass2"));
         System.out.println("_________________________________");
+    }
 
+    @Test()
+    public void adminLoginTest() {
+        System.out.println("Admin login:");
+        Admin admin = new Admin();
+        Assert.assertFalse(admin.login("admin1","admin"));
+        Assert.assertFalse(admin.isLogin());
+        Assert.assertFalse(admin.login("admin","admin1"));
+        Assert.assertFalse(admin.isLogin());
+        Assert.assertTrue(admin.login("admin","admin"));
+        Assert.assertTrue(admin.isLogin());
+        System.out.println("_________________________________");
+    }
+
+    @Test()
+    public void changingPasswordForAdminTest() {
+        System.out.println("Admin changing password:");
+        Admin admin = new Admin();
+        Assert.assertFalse(admin.changingPassword("admin","admin"));
+        Assert.assertFalse(admin.changingPassword("pass","pass"));
+        Assert.assertFalse(admin.login("admin","pass"));
+        Assert.assertTrue(admin.changingPassword("admin","pass"));
+        Assert.assertTrue(admin.login("admin","pass"));
+    }
+
+    @Test()
+    public void accessTest() {
+        System.out.println("Access test for admin:");
+        Admin admin = new Admin();
+        NormalUser user = new NormalUser("user","pass");
+        Assert.assertTrue(admin.isAdmin());
+        Assert.assertFalse(user.isAdmin());
+    }
 }
